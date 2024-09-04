@@ -25,3 +25,41 @@ Allocate on the Heap:
 - When the zombie object is large or has a dynamic size (e.g., large arrays, complex data structures).
 - When the zombie needs to persist after the function returns, or when the lifetime of the zombie is not tied to a single function call.
 - When you need to manage the object’s lifetime manually, for example, to share the object across different parts of the program.
+
+## Exercise 01: new[] and delete[]
+
+## Exercise 02: Demystify references
+
+Constant pointer that is never NULL and always unreferenced. Assign variable directly to the reference, it will always be pointing to this variable and we will not able to make it point to something else later. 
+
+## Exercise 03: pointers and references
+
+### Similarities
+Indirect Access:
+- Both pointers and references allow you to access and modify the value of another variable indirectly.
+
+int a = 10;
+int* ptr = &a;   // Pointer to a
+int& ref = a;    // Reference to a
+
+*ptr = 20;       // Modifies a through pointer
+ref = 30;        // Modifies a through reference
+
+Memory Address:
+- Both can be used to obtain the memory address of a variable.
+- Pointers store the address of the variable, while references internally hold the address of the variable they refer to.
+
+int a = 10;
+int* ptr = &a;   // Pointer holds the address of a
+int& ref = a;    // Reference refers to a
+
+std::cout << ptr << std::endl;   // Outputs the memory address of a
+std::cout << &ref << std::endl;  // Outputs the memory address of a
+
+
+Function Arguments:
+- Both can be used to pass arguments to functions, allowing the function to modify the original variable.
+
+
+
+
