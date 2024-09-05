@@ -56,9 +56,39 @@ int& ref = a;    // Reference refers to a
 std::cout << ptr << std::endl;   // Outputs the memory address of a
 std::cout << &ref << std::endl;  // Outputs the memory address of a
 
-
 Function Arguments:
 - Both can be used to pass arguments to functions, allowing the function to modify the original variable.
+
+### Differences
+- Syntax
+  
+- Initialization : pointers can be declared without initialization and later assigned to any address. It can be re-assigned to point to another variable VS references must be initialized at the time of declaration and cannot be made to refer to another variable after initialization.
+  
+- Nullability : pointers can be assigned nullptr to indicate that it points to nothing.
+  
+- Reference : cannot be NULL
+
+- Deferencing : pointers require explicit dereferencing using the * operator to access the value pointed to while references automatically dereferenced; no special syntax is needed to access the value.
+
+- Pointer arithmetic :
+int arr[3] = {10, 20, 30};
+int* ptr = arr;
+
+ptr++;  // Points to the next element in the array
+
+int& ref = arr[0];
+// ref++;  // This would increment the value at arr[0], not move the reference
+
+- Use cases : 
+Pointer: Used when you need to:
+  - Manage dynamic memory (e.g., with new and delete).
+  - Implement data structures like linked lists, trees, etc.
+  - Use pointer arithmetic.
+  - Point to an array or a block of memory.
+Reference: Preferred when:
+    - You want to create an alias for a variable.
+    - You want to pass arguments to functions without copying them.
+    - You need to ensure that the reference always points to a valid object.
 
 ## Exercise 04: ifstream and ofstream
 
@@ -68,4 +98,22 @@ ifstream (Input File Stream): used to read data from files. You open a file usin
 
 ofstream (Output File Stream): used to write data to files. You can open a file for writing using open() or by passing the file name to the constructor. Data can be written to the file similarly to how data is written to cout.
 
-## Exercise 05 : 
+## Exercise 05 : new[],delete[]
+
+## Exercise 06: switch statement
+
+switch (expression) {
+    case constant1:
+        // code to be executed if expression == constant1
+        break;
+    case constant2:
+        // code to be executed if expression == constant2
+        break;
+    // more cases
+    default:
+        // code to be executed if expression doesn't match any case
+}
+
+
+
+
