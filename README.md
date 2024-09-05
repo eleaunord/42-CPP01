@@ -60,6 +60,12 @@ std::cout << &ref << std::endl;  // Outputs the memory address of a
 Function Arguments:
 - Both can be used to pass arguments to functions, allowing the function to modify the original variable.
 
+## Exercise 04: ifstream and ofstream
 
+From the stream library <fstream>
 
+ifstream (Input File Stream): used to read data from files. You open a file using the open() method or by passing the file name directly to the constructor. Works similarly to reading from cin, except that the input is taken from a file.
 
+ofstream (Output File Stream): used to write data to files. You can open a file for writing using open() or by passing the file name to the constructor. Data can be written to the file similarly to how data is written to cout.
+
+## Exercise 05 : 
