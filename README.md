@@ -1,119 +1,141 @@
-## Exercise 00: How to allocate memory in C++ ? 
-### Stack vs Heap
-Stack memory
-> Automatically managed by the compiler and is allocated when you declare a local variable inside a function.
-- Automatic Deallocation: Memory is automatically deallocated when the function exits.
-- Limited Size: The stack has a limited size, usually set by the system or the compiler, making it unsuitable for large data.
-- Fast Access: Stack memory is faster to allocate and deallocate compared to heap memory because it involves simple pointer arithmetic.
-To use when we know the size of the data at compile time and the data doesn’t need to persist beyond the scope of the function..
+# C++ Module 01 – Memory, References, and Control Flow
 
-Heap memory
-> Dynamically allocated during the runtime using the new keyword and must be explicitly deallocated using delete.
-- Manual Deallocation: You must manually deallocate memory using delete or delete[] for arrays.
-- Flexible Size: The heap is much larger than the stack and can allocate large amounts of memory.
-- Slower Access: Heap allocation and deallocation are generally slower compared to stack operations.
-To use when we DON'T know the size of the data at compile time or when the data needs to persist beyond the function scope (e.g., returning data from a function or allocating large arrays).
+This module is an introduction to **dynamic memory allocation**, **pointers**, **references**, and **control structures** in C++. It builds the foundation for deeper understanding of how memory and object interaction works in C++, contrasting it with C.
 
-### Allocating zombies in the exercise
+---
 
-Allocate on the Stack:
-- When the zombie object is small or of a fixed size.
-- When the zombie's lifetime is limited to the function scope.
-- When you want faster access to the object and automatic memory management.
+## 📘 What I Learned
 
-Allocate on the Heap:
-- When the zombie object is large or has a dynamic size (e.g., large arrays, complex data structures).
-- When the zombie needs to persist after the function returns, or when the lifetime of the zombie is not tied to a single function call.
-- When you need to manage the object’s lifetime manually, for example, to share the object across different parts of the program.
+* Differences between stack and heap memory
+* How to allocate and deallocate memory with `new` and `delete`
+* Basics of references vs pointers
+* How to safely manipulate and share data using references
+* How to manage object ownership
+* The `switch` statement and its use in control flow
+* Introduction to streams with file input/output
+* Function pointers and their role in dynamic behavior
 
-## Exercise 01: new[] and delete[]
+---
 
-## Exercise 02: Demystify references
+## Exercise 00: BraiiiiiiinnnzzzZ
 
-Constant pointer that is never NULL and always unreferenced. Assign variable directly to the reference, it will always be pointing to this variable and we will not able to make it point to something else later. 
+**Focus**: Stack vs Heap memory allocation
 
-## Exercise 03: pointers and references
+This exercise introduces the idea of memory management by creating `Zombie` objects.
 
-### Similarities
-Indirect Access:
-- Both pointers and references allow you to access and modify the value of another variable indirectly.
+### Concepts:
 
-int a = 10;
-int* ptr = &a;   // Pointer to a
-int& ref = a;    // Reference to a
+* **Stack allocation**: Object lives and dies within a function scope.
+* **Heap allocation**: Object persists beyond scope, manually freed.
+* Destructor used to track when a zombie is destroyed.
 
-*ptr = 20;       // Modifies a through pointer
-ref = 30;        // Modifies a through reference
+```cpp
+Zombie* newZombie(std::string name);   // allocated on the heap
+void randomChump(std::string name);    // allocated on the stack
+```
 
-Memory Address:
-- Both can be used to obtain the memory address of a variable.
-- Pointers store the address of the variable, while references internally hold the address of the variable they refer to.
+Key takeaway: Use the **stack** for short-lived objects; use the **heap** for persistent or shared objects.
 
-int a = 10;
-int* ptr = &a;   // Pointer holds the address of a
-int& ref = a;    // Reference refers to a
+---
 
-std::cout << ptr << std::endl;   // Outputs the memory address of a
-std::cout << &ref << std::endl;  // Outputs the memory address of a
+## Exercise 01: Moar brainz!
 
-Function Arguments:
-- Both can be used to pass arguments to functions, allowing the function to modify the original variable.
+**Focus**: `new[]` and `delete[]` for heap-allocated arrays
 
-### Differences
-- Syntax
-  
-- Initialization : pointers can be declared without initialization and later assigned to any address. It can be re-assigned to point to another variable VS references must be initialized at the time of declaration and cannot be made to refer to another variable after initialization.
-  
-- Nullability : pointers can be assigned nullptr to indicate that it points to nothing.
-  
-- Reference : cannot be NULL
+I learned to create a **zombie horde** using a dynamically allocated array of objects.
 
-- Deferencing : pointers require explicit dereferencing using the * operator to access the value pointed to while references automatically dereferenced; no special syntax is needed to access the value.
+```cpp
+Zombie* zombieHorde(int N, std::string name);
+```
 
-- Pointer arithmetic :
-int arr[3] = {10, 20, 30};
-int* ptr = arr;
+### Concepts:
 
-ptr++;  // Points to the next element in the array
+* Use of `new[]` to allocate an array of objects
+* Iterating through array to initialize objects
+* Importance of `delete[]` to prevent memory leaks
 
-int& ref = arr[0];
-// ref++;  // This would increment the value at arr[0], not move the reference
+---
 
-- Use cases : 
-Pointer: Used when you need to:
-  - Manage dynamic memory (e.g., with new and delete).
-  - Implement data structures like linked lists, trees, etc.
-  - Use pointer arithmetic.
-  - Point to an array or a block of memory.
-Reference: Preferred when:
-    - You want to create an alias for a variable.
-    - You want to pass arguments to functions without copying them.
-    - You need to ensure that the reference always points to a valid object.
+## Exercise 02: HI THIS IS BRAIN
 
-## Exercise 04: ifstream and ofstream
+**Focus**: Pointers and References
 
-From the stream library <fstream>
+I explored pointers and references by pointing both to a string and observing memory behavior.
 
-ifstream (Input File Stream): used to read data from files. You open a file using the open() method or by passing the file name directly to the constructor. Works similarly to reading from cin, except that the input is taken from a file.
+### Concepts:
 
-ofstream (Output File Stream): used to write data to files. You can open a file for writing using open() or by passing the file name to the constructor. Data can be written to the file similarly to how data is written to cout.
+* A **reference** is an alias to a variable — cannot be null, must be initialized.
+* A **pointer** stores an address — can be reassigned or null.
 
-## Exercise 05 : new[],delete[]
+```cpp
+std::string brain = "HI THIS IS BRAIN";
+std::string* stringPTR = &brain;
+std::string& stringREF = brain;
+```
 
-## Exercise 06: switch statement
+Takeaway: Pointers offer flexibility and control; references offer safety and simplicity.
 
-switch (expression) {
-    case constant1:
-        // code to be executed if expression == constant1
-        break;
-    case constant2:
-        // code to be executed if expression == constant2
-        break;
-    // more cases
-    default:
-        // code to be executed if expression doesn't match any case
-}
+---
 
+## Exercise 03: Unnecessary violence
 
+**Focus**: References vs pointers in object members
 
+This task involved two humans (HumanA and HumanB) who can hold weapons and attack.
+
+### Concepts:
+
+* Using **references** when a value must be bound at construction
+* Using **pointers** when a value may change or be null
+* Class design and dependency injection
+
+Key insight: HumanA uses a reference (always armed); HumanB uses a pointer (optional weapon).
+
+---
+
+## Exercise 04: Sed is for losers
+
+**Focus**: File I/O using `ifstream` and `ofstream`
+
+I created a program that reads a file, replaces all instances of `s1` with `s2`, and writes to a new file.
+
+### Concepts:
+
+* Reading and writing files with `<fstream>`
+* Handling input arguments and errors
+* Manipulating `std::string` (without `.replace()`!)
+
+Learned to build file tools and work with I/O in a C++ idiomatic way.
+
+---
+
+## Exercise 05: Harl 2.0
+
+**Focus**: Function pointers to class members
+
+I implemented a class `Harl` that prints messages based on severity levels.
+
+### Concepts:
+
+* Pointers to member functions
+* Avoiding if-else chains with clean dispatch
+* Mapping strings to behaviors dynamically
+
+Learned dynamic function calling using member function pointers.
+
+---
+
+## Exercise 06: Harl filter
+
+**Focus**: `switch` statement
+
+Filtered `Harl`'s complaints based on a minimum severity level using `switch`.
+
+### Concepts:
+
+* Use of `switch` for cleaner multi-case logic
+* Default behavior for unrecognized input
+* Chained logging logic from a defined entry point
+
+Good introduction to control flow structures and fallthrough behavior in C++.
 
